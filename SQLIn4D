@@ -1,0 +1,19 @@
+//Using 4D SQL
+ ARRAY INTEGER(esaf_id;0)
+ ARRAY LONGINT(date_started;0)
+ C_LONGINT($MovieYear)
+ 
+ REDUCE SELECTION([Experimenters];0)
+ $MovieYear:=2018
+ Begin SQL
+    SELECT ESAFID, DateExpStarted
+    FROM Experimenters
+    WHERE DateExpStarted >= :$MovieYear
+    GROUP BY ESAFID
+    INTO :esaf_id,  :date_started;
+ End SQL
+  ` Initialize the rest of the list box columns in order to display the information
+ //ARRAY TEXT(aTitles;Size of array(aMovieYear))
+ //ARRAY TEXT(aDirectors;Size of array(aMovieYear))
+ //ARRAY TEXT(aMedias;Size of array(aMovieYear))
+ //ARRAY LONGINT(aNrActors;Size of array(aMovieYear))
